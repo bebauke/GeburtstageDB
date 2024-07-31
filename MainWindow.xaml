@@ -1,0 +1,35 @@
+﻿<Window x:Class="Geburtstage.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Geburtstage.ViewModels"
+        xmlns:views="clr-namespace:Geburtstage.Views"
+        Title="Birthday Calendar" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <!--<MenuItem Header="New Person" Command="{Binding NewPersonCommand}" />-->
+                <MenuItem Header="Plot" Command="{Binding ShowPlotCommand}" />
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
+                
+            </MenuItem>
+            <MenuItem Header="Database">
+                <MenuItem Header="Initialize Database" Command="{Binding InitializeDatabaseCommand}" />
+                <MenuItem Header="Reset Database" Command="{Binding ResetDatabaseCommand}" />
+                <MenuItem Header="Export Data as VCard" Command="{Binding ExportDataAsVCardCommand}" />
+                <MenuItem Header="Import Data from VCard" Command="{Binding ImportDataFromVCardCommand}" />
+                <MenuItem Header="Export Data as CSV" Command="{Binding ExportDataAsCsvCommand}" />
+                <MenuItem Header="Import Data from CSV" Command="{Binding ImportDataFromCsvCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <views:PersonsView Grid.Row="1" />
+    </Grid>
+</Window>

@@ -1,0 +1,192 @@
+﻿<Window x:Class="Geburtstage.Views.EditPersonView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit Person" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0">
+            <StackPanel Margin="10">
+                <TextBlock Text="Person Information" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.FirstName}" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Middle Name" Grid.Row="1" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.MiddleName}" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Last Name" Grid.Row="2" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.LastName}" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Birth Name" Grid.Row="3" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.BirthName}" Grid.Row="3" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Prefix" Grid.Row="4" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.Prefix}" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Suffix" Grid.Row="5" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.Suffix}" Grid.Row="5" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Date of Birth" Grid.Row="6" Grid.Column="0" Margin="0,0,5,5"/>
+                    <DatePicker SelectedDate="{Binding SelectedPerson.DateOfBirth}" Grid.Row="6" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Place of Birth" Grid.Row="7" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.PlaceOfBirth}" Grid.Row="7" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Date of Death" Grid.Row="8" Grid.Column="0" Margin="0,0,5,5"/>
+                    <DatePicker SelectedDate="{Binding SelectedPerson.DateOfDeath}" Grid.Row="8" Grid.Column="1" Margin="0,0,0,5"/>
+
+                    <TextBlock Text="Place of Death" Grid.Row="9" Grid.Column="0" Margin="0,0,5,5"/>
+                    <TextBox Text="{Binding SelectedPerson.PlaceOfDeath}" Grid.Row="9" Grid.Column="1" Margin="0,0,0,5"/>
+                </Grid>
+
+                <TextBlock Text="Contacts" FontWeight="Bold" Margin="10,20,0,5"/>
+
+                <TextBlock Text="Addresses" FontWeight="Bold" Margin="10,20,0,5"/>
+                <ItemsControl ItemsSource="{Binding Addresses}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding Label}" Margin="5" />
+                                <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Value.Street}" Margin="5" />
+                                <Button Grid.Column="3" Grid.Row="0" Content="-" Command="{Binding DataContext.RemoveAddressCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="5" />
+
+                                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Value.PostalCode}" Margin="5"/>
+                                <TextBox Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Value.City}" Margin="5"/>
+
+                                <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding Value.Country}" Margin="5"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Content="+" Command="{Binding AddAddressCommand}" Margin="0,10,0,0" Width="50" HorizontalAlignment="Right"/>
+
+                <TextBlock Text="Emails" FontWeight="Bold" Margin="10,20,0,5"/>
+                <ItemsControl ItemsSource="{Binding Emails}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBox Grid.Column="0" Text="{Binding Label}" Margin="5" />
+                                <TextBox Grid.Column="1" Text="{Binding Value}" Margin="5"/>
+                                <Button Grid.Column="2" Content="-" Command="{Binding DataContext.RemoveEmailCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="5" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Content="+" Command="{Binding AddEmailCommand}" Margin="0,10,0,0" Width="50" HorizontalAlignment="Right"/>
+
+                <TextBlock Text="Phone Numbers" FontWeight="Bold" Margin="10,20,0,5"/>
+                <ItemsControl ItemsSource="{Binding PhoneNumbers}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBox Grid.Column="0" Text="{Binding Label}" Margin="5" />
+                                <TextBox Grid.Column="1" Text="{Binding Value}" Margin="5"/>
+                                <Button Grid.Column="2" Content="-" Command="{Binding DataContext.RemovePhoneNumberCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Margin="5" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Content="+" Command="{Binding AddPhoneNumberCommand}" Margin="0,10,0,0" Width="50" HorizontalAlignment="Right"/>
+                
+
+                <TextBlock Text="Relationships" FontWeight="Bold" Margin="10,0,0,5"/>
+                <ItemsControl ItemsSource="{Binding RelatedPersons}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="200" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Relationship Type ComboBox -->
+                                <ComboBox Grid.Column="0"
+                                  ItemsSource="{Binding DataContext.RelationshipTypes, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                  SelectedItem="{Binding Item2.Label, Mode=TwoWay}"
+                                  Margin="5" />
+
+                                <!-- Related Person ComboBox -->
+                                <ComboBox Grid.Column="1" Grid.ColumnSpan="2"
+                                  IsEditable="True"
+                                  ItemsSource="{Binding DataContext.AllPersons, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                  DisplayMemberPath="FullName"
+                                  SelectedValuePath="Id"
+                                  SelectedValue="{Binding Item2.Value.Id, Mode=TwoWay}"
+                                  Margin="5" />
+                                
+                                
+
+                                <!-- Remove Button -->
+                                <Button Grid.Column="3" Content="-"
+                                        Command="{Binding DataContext.RemoveRelationshipCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding}"
+                                        Margin="5" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Content="+" Command="{Binding AddRelationshipCommand}" Margin="0,10,0,0" Width="50" HorizontalAlignment="Right"/>
+
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="Save" Command="{Binding SaveCommand}" Width="75" Margin="5" />
+            <Button Content="Cancel" Command="{Binding CancelCommand}" Width="75" Margin="5" />
+        </StackPanel>
+    </Grid>
+</Window>
