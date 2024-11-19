@@ -1,6 +1,10 @@
 ## Projektbeschreibung
 Das Projekt ist eine WPF-Anwendung, die es ermöglicht, Geburtstage zu speichern und zu verwalten. Die Anwendung bietet die Möglichkeit, Geburtstage zu speichern, zu bearbeiten und zu löschen. Außerdem kann die Anwendung Geburtstage nach Namen, Geburtsdatum und Alter sortieren. Die Anwendung bietet auch die Möglichkeit, Geburtstage zu exportieren und zu importieren. Die Anwendung speichert die Geburtstage in einer XML-Datei.
 
+## Screenshots
+![grafik](https://github.com/user-attachments/assets/d40226b1-193e-42fb-b141-432be3210975)
+
+
 ## Anleitung
 1. Starten Sie die Anwendung.
 2. Klicken Sie auf "Add", um einen neuen Geburtstag hinzuzufügen.
@@ -20,3 +24,4 @@ Das Projekt ist eine WPF-Anwendung, die es ermöglicht, Geburtstage zu speichern
 ## Verwendete Bibliotheken
 - ScottPlot
 - MongoDB.Driver
+
